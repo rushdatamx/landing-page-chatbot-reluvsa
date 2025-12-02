@@ -1,0 +1,142 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const {
+  title,
+  description = "Llantas de calidad al mejor precio en Cd. Victoria. Más de 30 años de experiencia. Cotiza en 2 minutos por WhatsApp. Reluvsa Autopartes."
+} = Astro.props;
+
+// ============================================
+// CONFIGURACIÓN - RELUVSA AUTOPARTES
+// ============================================
+const config = {
+  siteName: "Reluvsa Autopartes",
+  phone: "15558712368",                    // Número de WhatsApp (sin +)
+  city: "Cd. Victoria, Tamaulipas",
+  fbPixelId: "[FB_PIXEL_ID]",             // ID del Pixel de Facebook
+  gaId: "[GA_ID]",                         // ID de Google Analytics
+  siteUrl: "https://reluvsa.com.mx",       // URL del sitio
+};
+
+const fullTitle = `${title} | ${config.siteName}`;
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <meta name="robots" content="index, follow" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={config.siteUrl} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={`${config.siteUrl}/og-image.jpg`} />
+    <meta property="og:locale" content="es_MX" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={`${config.siteUrl}/og-image.jpg`} />
+
+    <!-- Preconnect para performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://www.googletagmanager.com" />
+
+    <title>{fullTitle}</title>
+
+    <!-- Google Analytics 4 -->
+    <!-- IMPORTANTE: Reemplaza [GA_ID] con tu ID real (ej: G-XXXXXXXXXX) -->
+    <script is:inline define:vars={{ gaId: config.gaId }}>
+      if (gaId && !gaId.includes('[')) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', gaId);
+
+        // Cargar script de GA
+        var script = document.createElement('script');
+        script.async = true;
+        script.src = 'https://www.googletagmanager.com/gtag/js?id=' + gaId;
+        document.head.appendChild(script);
+      }
+    </script>
+
+    <!-- Facebook Pixel -->
+    <!-- IMPORTANTE: Reemplaza [FB_PIXEL_ID] con tu ID real -->
+    <script is:inline define:vars={{ fbPixelId: config.fbPixelId }}>
+      if (fbPixelId && !fbPixelId.includes('[')) {
+        !function(f,b,e,v,n,t,s)
+        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+        n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t,s)}(window, document,'script',
+        'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', fbPixelId);
+        fbq('track', 'PageView');
+      }
+    </script>
+    <noscript>
+      <img height="1" width="1" style="display:none"
+        src={`https://www.facebook.com/tr?id=${config.fbPixelId}&ev=PageView&noscript=1`}/>
+    </noscript>
+
+    <!-- Schema.org para SEO local -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": config.siteName,
+      "description": description,
+      "url": config.siteUrl,
+      "telephone": `+${config.phone}`,
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": config.city,
+        "addressCountry": "MX"
+      },
+      "priceRange": "$$",
+      "openingHours": ["Mo-Fr 08:00-19:00", "Sa 08:00-16:00"],
+      "image": `${config.siteUrl}/og-image.jpg`
+    })} />
+  </head>
+  <body class="bg-white text-gray-900 antialiased">
+    <slot />
+
+    <!-- Script para tracking de clics en WhatsApp -->
+    <script is:inline>
+      document.addEventListener('DOMContentLoaded', function() {
+        // Track clicks en botones de WhatsApp
+        document.querySelectorAll('a[href*="wa.me"], a[href*="whatsapp"]').forEach(function(link) {
+          link.addEventListener('click', function() {
+            // Google Analytics Event
+            if (typeof gtag !== 'undefined') {
+              gtag('event', 'whatsapp_click', {
+                'event_category': 'engagement',
+                'event_label': 'WhatsApp CTA'
+              });
+            }
+            // Facebook Pixel Event
+            if (typeof fbq !== 'undefined') {
+              fbq('track', 'Contact');
+            }
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

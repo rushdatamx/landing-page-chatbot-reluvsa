@@ -1,0 +1,110 @@
+---
+// ============================================
+// CONFIGURACIÓN - RELUVSA AUTOPARTES
+// ============================================
+const config = {
+  phone: "15558712368",
+};
+
+// Categorías de vehículos
+const vehicleTypes = [
+  {
+    name: "Auto / Sedán",
+    description: "Llantas para autos compactos y sedanes",
+    icon: `<svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 9l-2-4H7L5 9m14 0h2v4h-2m0-4H5m0 0H3v4h2m0 6h2m10 0h2M7 17a2 2 0 100-4 2 2 0 000 4zm10 0a2 2 0 100-4 2 2 0 000 4z"/>
+    </svg>`,
+    message: "Hola, busco llantas para mi auto sedán"
+  },
+  {
+    name: "Camioneta / Pickup",
+    description: "Llantas resistentes para trabajo pesado",
+    icon: `<svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 7h8m-8 4h8m-4-8v4m-7 4h18v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zm3 6a2 2 0 100-4 2 2 0 000 4zm10 0a2 2 0 100-4 2 2 0 000 4z"/>
+    </svg>`,
+    message: "Hola, busco llantas para mi camioneta/pickup"
+  },
+  {
+    name: "SUV / Crossover",
+    description: "Combinación de confort y desempeño",
+    icon: `<svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z"/>
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0"/>
+    </svg>`,
+    message: "Hola, busco llantas para mi SUV"
+  },
+  {
+    name: "Todo Terreno",
+    description: "Máxima tracción para cualquier camino",
+    icon: `<svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/>
+    </svg>`,
+    message: "Hola, busco llantas todo terreno"
+  }
+];
+
+// Marcas que maneja Reluvsa
+const brands = [
+  "Nereus",
+  "Tornel"
+];
+---
+
+<section id="servicios" class="py-16 md:py-24 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Section Header -->
+    <div class="text-center mb-16">
+      <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+        ¿Qué tipo de vehículo tienes?
+      </h2>
+      <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+        Selecciona tu tipo de vehículo y te asesoramos con las mejores opciones
+      </p>
+    </div>
+
+    <!-- Vehicle Types Grid -->
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+      {vehicleTypes.map((vehicle) => (
+        <a
+          href={`https://wa.me/${config.phone}?text=${encodeURIComponent(vehicle.message)}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="group bg-gray-50 hover:bg-primary-50 rounded-2xl p-6 text-center transition-all duration-300 hover:shadow-lg hover:-translate-y-1 cursor-pointer"
+        >
+          <div class="w-20 h-20 mx-auto bg-white group-hover:bg-primary-100 rounded-2xl flex items-center justify-center text-primary-600 mb-4 shadow-sm transition-colors duration-300">
+            <Fragment set:html={vehicle.icon} />
+          </div>
+          <h3 class="text-lg font-semibold text-gray-900 mb-2 group-hover:text-primary-700">
+            {vehicle.name}
+          </h3>
+          <p class="text-sm text-gray-600 mb-4">
+            {vehicle.description}
+          </p>
+          <span class="inline-flex items-center gap-2 text-primary-600 font-medium text-sm group-hover:text-primary-700">
+            Ver opciones
+            <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+            </svg>
+          </span>
+        </a>
+      ))}
+    </div>
+
+    <!-- Brands Section -->
+    <div class="bg-gray-50 rounded-3xl p-8 md:p-12">
+      <h3 class="text-2xl font-bold text-gray-900 text-center mb-8">
+        Trabajamos con las mejores marcas
+      </h3>
+      <div class="flex flex-wrap justify-center items-center gap-6 md:gap-10">
+        {brands.map((brand) => (
+          <div class="bg-white px-6 py-3 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+            <span class="text-gray-700 font-medium">{brand}</span>
+          </div>
+        ))}
+      </div>
+      <p class="text-center text-gray-500 mt-6 text-sm">
+        Pregúntanos por WhatsApp para más información sobre nuestras marcas.
+      </p>
+    </div>
+  </div>
+</section>
