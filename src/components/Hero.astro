@@ -8,124 +8,160 @@ const config = {
   city: "Cd. Victoria",
 };
 
-const whatsappUrl = `https://wa.me/${config.phone}?text=${encodeURIComponent('Hola, quiero cotizar llantas para mi vehículo')}`;
+const whatsappUrl = `https://wa.me/${config.phone}?text=${encodeURIComponent('Hola, quiero comprar llantas')}`;
 ---
 
-<section class="relative bg-gradient-to-br from-primary-900 via-primary-800 to-primary-700 overflow-hidden">
-  <!-- Background Pattern -->
-  <div class="absolute inset-0 opacity-10">
-    <div class="absolute inset-0" style="background-image: url('data:image/svg+xml,%3Csvg width=&quot;60&quot; height=&quot;60&quot; viewBox=&quot;0 0 60 60&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot;%3E%3Cg fill=&quot;none&quot; fill-rule=&quot;evenodd&quot;%3E%3Cg fill=&quot;%23ffffff&quot; fill-opacity=&quot;0.4&quot;%3E%3Ccircle cx=&quot;30&quot; cy=&quot;30&quot; r=&quot;4&quot;/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>
+<section class="relative overflow-hidden">
+  <!-- Background Image -->
+  <div class="absolute inset-0">
+    <img
+      src="/images/reluvsa-tienda.jpeg"
+      alt="Reluvsa Service Center"
+      class="w-full h-full object-cover"
+    />
+    <!-- Overlay oscuro para legibilidad -->
+    <div class="absolute inset-0 bg-gradient-to-br from-primary-900/85 via-primary-800/80 to-primary-700/75"></div>
   </div>
 
   <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 lg:py-32">
     <div class="grid lg:grid-cols-2 gap-12 items-center">
       <!-- Content -->
       <div class="text-center lg:text-left">
-        <!-- Badge -->
-        <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-medium mb-6">
-          <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
-            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
-          </svg>
-          <span>+{config.yearsExperience} años de experiencia en {config.city}</span>
+        <!-- Badge de urgencia -->
+        <div class="inline-flex items-center gap-2 bg-green-500/20 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-medium mb-6 border border-green-400/30">
+          <span class="relative flex h-2 w-2">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+          </span>
+          <span>Compra 100% en línea desde WhatsApp</span>
         </div>
 
         <!-- Headline -->
         <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">
-          Llantas de Calidad al
-          <span class="text-yellow-400">Mejor Precio</span>
+          Compra tus Llantas
+          <span class="text-yellow-400">Sin Salir de Casa</span>
         </h1>
 
-        <!-- Subheadline -->
-        <p class="text-xl md:text-2xl text-white/90 mb-8 max-w-xl mx-auto lg:mx-0">
-          Todas las marcas, todas las medidas.
-          <span class="font-semibold">Cotiza en 2 minutos</span> por WhatsApp.
+        <!-- Subheadline persuasivo -->
+        <p class="text-xl md:text-2xl text-white/90 mb-4 max-w-xl mx-auto lg:mx-0">
+          Escríbenos tu medida por WhatsApp y recibe tu cotización
+          <span class="font-semibold text-yellow-400">en segundos</span>.
         </p>
 
-        <!-- CTA Buttons -->
-        <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10">
+        <!-- Propuesta de valor -->
+        <p class="text-lg text-white/80 mb-8 max-w-xl mx-auto lg:mx-0">
+          Paga en línea con tarjeta y te llevamos tus llantas.
+          <span class="font-semibold">Así de fácil.</span>
+        </p>
+
+        <!-- CTA Principal -->
+        <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-8">
           <a
             href={whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
-            class="inline-flex items-center justify-center gap-3 bg-whatsapp hover:bg-whatsapp-hover text-white font-bold px-8 py-4 rounded-full text-lg transition-all duration-300 hover:scale-105 shadow-2xl hover:shadow-green-500/25"
+            class="group inline-flex items-center justify-center gap-3 bg-whatsapp hover:bg-whatsapp-hover text-white font-bold px-8 py-5 rounded-full text-xl transition-all duration-300 hover:scale-105 shadow-2xl hover:shadow-green-500/40"
           >
-            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+            <svg class="w-7 h-7 transition-transform group-hover:scale-110" fill="currentColor" viewBox="0 0 24 24">
               <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
             </svg>
-            Cotizar Ahora por WhatsApp
+            Comprar Ahora
           </a>
         </div>
 
+        <!-- Micro-copy de confianza -->
+        <p class="text-sm text-white/60 mb-8">
+          Respuesta automática 24/7 • Sin esperas • Sin llamadas
+        </p>
+
         <!-- Trust Badges -->
-        <div class="flex flex-wrap justify-center lg:justify-start gap-6 text-white/80">
-          <div class="flex items-center gap-2">
+        <div class="flex flex-wrap justify-center lg:justify-start gap-4 text-white/80">
+          <div class="flex items-center gap-2 bg-white/10 backdrop-blur-sm px-3 py-2 rounded-lg">
             <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20">
               <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
             </svg>
-            <span class="text-sm">Garantía incluida</span>
+            <span class="text-sm font-medium">Pago seguro con tarjeta</span>
           </div>
-          <div class="flex items-center gap-2">
+          <div class="flex items-center gap-2 bg-white/10 backdrop-blur-sm px-3 py-2 rounded-lg">
             <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20">
               <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
             </svg>
-            <span class="text-sm">Instalación profesional</span>
+            <span class="text-sm font-medium">Envío a domicilio</span>
           </div>
-          <div class="flex items-center gap-2">
+          <div class="flex items-center gap-2 bg-white/10 backdrop-blur-sm px-3 py-2 rounded-lg">
             <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20">
               <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
             </svg>
-            <span class="text-sm">+30 años de experiencia</span>
+            <span class="text-sm font-medium">+30 años de experiencia</span>
           </div>
         </div>
       </div>
 
-      <!-- Hero Image/Visual -->
+      <!-- Hero Visual - Proceso simplificado -->
       <div class="relative hidden lg:block">
-        <div class="relative w-full aspect-square max-w-lg mx-auto">
-          <!-- Círculo decorativo con icono de llanta -->
-          <div class="absolute inset-0 bg-white/10 rounded-full animate-pulse"></div>
-          <div class="absolute inset-4 bg-white/5 rounded-full"></div>
-          <div class="absolute inset-0 flex items-center justify-center">
-            <!-- Icono de llanta grande -->
-            <svg class="w-64 h-64 text-white/20" viewBox="0 0 100 100" fill="currentColor">
-              <circle cx="50" cy="50" r="45" stroke="currentColor" stroke-width="2" fill="none" opacity="0.5"/>
-              <circle cx="50" cy="50" r="35" stroke="currentColor" stroke-width="3" fill="none"/>
-              <circle cx="50" cy="50" r="25" stroke="currentColor" stroke-width="2" fill="none" opacity="0.5"/>
-              <circle cx="50" cy="50" r="12" fill="currentColor" opacity="0.3"/>
-              <circle cx="50" cy="50" r="6" fill="currentColor"/>
-              <!-- Spokes -->
-              <line x1="50" y1="15" x2="50" y2="38" stroke="currentColor" stroke-width="3" opacity="0.5"/>
-              <line x1="50" y1="62" x2="50" y2="85" stroke="currentColor" stroke-width="3" opacity="0.5"/>
-              <line x1="15" y1="50" x2="38" y2="50" stroke="currentColor" stroke-width="3" opacity="0.5"/>
-              <line x1="62" y1="50" x2="85" y2="50" stroke="currentColor" stroke-width="3" opacity="0.5"/>
-            </svg>
-          </div>
-
-          <!-- Floating badges -->
-          <div class="absolute top-10 right-0 bg-white rounded-lg shadow-xl p-4 animate-bounce" style="animation-duration: 3s;">
-            <div class="flex items-center gap-2">
-              <div class="w-8 h-8 bg-yellow-400 rounded-full flex items-center justify-center">
-                <svg class="w-5 h-5 text-yellow-900" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+        <div class="relative w-full max-w-md mx-auto">
+          <!-- Card principal: Simulación de chat -->
+          <div class="bg-white rounded-2xl shadow-2xl p-6 transform rotate-1 hover:rotate-0 transition-transform duration-300">
+            <div class="flex items-center gap-3 mb-4 pb-4 border-b">
+              <div class="w-12 h-12 bg-whatsapp rounded-full flex items-center justify-center">
+                <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
                 </svg>
               </div>
               <div>
-                <p class="text-xs text-gray-500">Experiencia</p>
-                <p class="font-bold text-gray-900">+30 años</p>
+                <p class="font-bold text-gray-900">Reluvsa Autopartes</p>
+                <p class="text-xs text-green-600 flex items-center gap-1">
+                  <span class="w-2 h-2 bg-green-500 rounded-full"></span>
+                  En línea ahora
+                </p>
               </div>
+            </div>
+
+            <!-- Chat messages -->
+            <div class="space-y-3">
+              <div class="flex justify-end">
+                <div class="bg-green-100 text-gray-800 px-4 py-2 rounded-2xl rounded-tr-md text-sm max-w-[80%]">
+                  Hola, busco llantas 205/55R16
+                </div>
+              </div>
+              <div class="flex justify-start">
+                <div class="bg-gray-100 text-gray-800 px-4 py-2 rounded-2xl rounded-tl-md text-sm max-w-[80%]">
+                  ¡Tenemos disponibles! NEREUS a $1,299 c/u. ¿Te envío link de pago?
+                </div>
+              </div>
+              <div class="flex justify-end">
+                <div class="bg-green-100 text-gray-800 px-4 py-2 rounded-2xl rounded-tr-md text-sm max-w-[80%]">
+                  ¡Sí, por favor!
+                </div>
+              </div>
+            </div>
+
+            <!-- Typing indicator -->
+            <div class="mt-3 flex items-center gap-2 text-gray-500 text-sm">
+              <div class="flex gap-1">
+                <span class="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style="animation-delay: 0ms;"></span>
+                <span class="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style="animation-delay: 150ms;"></span>
+                <span class="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style="animation-delay: 300ms;"></span>
+              </div>
+              <span>Enviando link de pago...</span>
             </div>
           </div>
 
-          <div class="absolute bottom-10 left-0 bg-white rounded-lg shadow-xl p-4">
+          <!-- Floating badges -->
+          <div class="absolute -top-4 -right-4 bg-yellow-400 text-yellow-900 rounded-full px-4 py-2 font-bold text-sm shadow-lg animate-bounce" style="animation-duration: 2s;">
+            Respuesta instantánea
+          </div>
+
+          <div class="absolute -bottom-4 -left-4 bg-white rounded-lg shadow-xl p-3">
             <div class="flex items-center gap-2">
-              <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
-                <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+              <div class="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center">
+                <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M4 4a2 2 0 00-2 2v4a2 2 0 002 2V6h10a2 2 0 00-2-2H4zm2 6a2 2 0 012-2h8a2 2 0 012 2v4a2 2 0 01-2 2H8a2 2 0 01-2-2v-4zm6 4a2 2 0 100-4 2 2 0 000 4z"/>
                 </svg>
               </div>
               <div>
-                <p class="text-xs text-gray-500">Respuesta</p>
-                <p class="font-bold text-gray-900">En minutos</p>
+                <p class="text-xs text-gray-500">Pago seguro</p>
+                <p class="font-bold text-gray-900 text-sm">Stripe</p>
               </div>
             </div>
           </div>
