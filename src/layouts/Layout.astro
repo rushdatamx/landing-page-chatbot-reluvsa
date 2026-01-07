@@ -19,7 +19,8 @@ const config = {
   phone: "15558712368",                    // Número de WhatsApp (sin +)
   city: "Cd. Victoria, Tamaulipas",
   fbPixelId: "[FB_PIXEL_ID]",             // ID del Pixel de Facebook
-  gaId: "[GA_ID]",                         // ID de Google Analytics
+  gaId: "[GA_ID]",                         // ID de Google Analytics (ej: G-XXXXXXXXXX)
+  gadsId: "AW-636802231",                  // ID de Google Ads
   siteUrl: "https://reluvsa.com.mx",       // URL del sitio
 };
 
@@ -58,20 +59,19 @@ const fullTitle = `${title} | ${config.siteName}`;
 
     <title>{fullTitle}</title>
 
-    <!-- Google Analytics 4 -->
-    <!-- IMPORTANTE: Reemplaza [GA_ID] con tu ID real (ej: G-XXXXXXXXXX) -->
-    <script is:inline define:vars={{ gaId: config.gaId }}>
-      if (gaId && !gaId.includes('[')) {
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', gaId);
+    <!-- Google Ads Tag -->
+    <script async src={`https://www.googletagmanager.com/gtag/js?id=${config.gadsId}`}></script>
+    <script is:inline define:vars={{ gadsId: config.gadsId, gaId: config.gaId }}>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
 
-        // Cargar script de GA
-        var script = document.createElement('script');
-        script.async = true;
-        script.src = 'https://www.googletagmanager.com/gtag/js?id=' + gaId;
-        document.head.appendChild(script);
+      // Google Ads
+      gtag('config', gadsId);
+
+      // Google Analytics 4 (si está configurado)
+      if (gaId && !gaId.includes('[')) {
+        gtag('config', gaId);
       }
     </script>
 
@@ -123,6 +123,14 @@ const fullTitle = `${title} | ${config.siteName}`;
         // Track clicks en botones de WhatsApp
         document.querySelectorAll('a[href*="wa.me"], a[href*="whatsapp"]').forEach(function(link) {
           link.addEventListener('click', function() {
+            // Google Ads Conversion
+            if (typeof gtag !== 'undefined') {
+              gtag('event', 'conversion', {
+                'send_to': 'AW-636802231/RS1BCKHood0bELep068C',
+                'value': 100.0,
+                'currency': 'MXN'
+              });
+            }
             // Google Analytics Event
             if (typeof gtag !== 'undefined') {
               gtag('event', 'whatsapp_click', {
