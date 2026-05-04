@@ -18,9 +18,7 @@ const config = {
   siteName: "Reluvsa Autopartes",
   phone: "15558712368",                    // Número de WhatsApp (sin +)
   city: "Cd. Victoria, Tamaulipas",
-  fbPixelId: "[FB_PIXEL_ID]",             // ID del Pixel de Facebook
-  gaId: "[GA_ID]",                         // ID de Google Analytics (ej: G-XXXXXXXXXX)
-  gadsId: "AW-636802231",                  // ID de Google Ads
+  gtmId: "GTM-N5CTL2PQ",                  // Google Tag Manager (maneja GA4, Google Ads, FB Pixel)
   siteUrl: "https://reluvsa.com.mx",       // URL del sitio
 };
 
@@ -59,42 +57,13 @@ const fullTitle = `${title} | ${config.siteName}`;
 
     <title>{fullTitle}</title>
 
-    <!-- Google Ads Tag -->
-    <script async src={`https://www.googletagmanager.com/gtag/js?id=${config.gadsId}`}></script>
-    <script is:inline define:vars={{ gadsId: config.gadsId, gaId: config.gaId }}>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      // Google Ads
-      gtag('config', gadsId);
-
-      // Google Analytics 4 (si está configurado)
-      if (gaId && !gaId.includes('[')) {
-        gtag('config', gaId);
-      }
-    </script>
-
-    <!-- Facebook Pixel -->
-    <!-- IMPORTANTE: Reemplaza [FB_PIXEL_ID] con tu ID real -->
-    <script is:inline define:vars={{ fbPixelId: config.fbPixelId }}>
-      if (fbPixelId && !fbPixelId.includes('[')) {
-        !function(f,b,e,v,n,t,s)
-        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-        n.queue=[];t=b.createElement(e);t.async=!0;
-        t.src=v;s=b.getElementsByTagName(e)[0];
-        s.parentNode.insertBefore(t,s)}(window, document,'script',
-        'https://connect.facebook.net/en_US/fbevents.js');
-        fbq('init', fbPixelId);
-        fbq('track', 'PageView');
-      }
-    </script>
-    <noscript>
-      <img height="1" width="1" style="display:none"
-        src={`https://www.facebook.com/tr?id=${config.fbPixelId}&ev=PageView&noscript=1`}/>
-    </noscript>
+    <!-- Google Tag Manager -->
+    <script is:inline>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-N5CTL2PQ');</script>
+    <!-- End Google Tag Manager -->
 
     <!-- Schema.org para SEO local -->
     <script type="application/ld+json" set:html={JSON.stringify({
@@ -115,36 +84,11 @@ const fullTitle = `${title} | ${config.siteName}`;
     })} />
   </head>
   <body class="bg-white text-gray-900 antialiased">
-    <slot />
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N5CTL2PQ"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
 
-    <!-- Script para tracking de clics en WhatsApp -->
-    <script is:inline>
-      document.addEventListener('DOMContentLoaded', function() {
-        // Track clicks en botones de WhatsApp
-        document.querySelectorAll('a[href*="wa.me"], a[href*="whatsapp"]').forEach(function(link) {
-          link.addEventListener('click', function() {
-            // Google Ads Conversion
-            if (typeof gtag !== 'undefined') {
-              gtag('event', 'conversion', {
-                'send_to': 'AW-636802231/RS1BCKHood0bELep068C',
-                'value': 100.0,
-                'currency': 'MXN'
-              });
-            }
-            // Google Analytics Event
-            if (typeof gtag !== 'undefined') {
-              gtag('event', 'whatsapp_click', {
-                'event_category': 'engagement',
-                'event_label': 'WhatsApp CTA'
-              });
-            }
-            // Facebook Pixel Event
-            if (typeof fbq !== 'undefined') {
-              fbq('track', 'Contact');
-            }
-          });
-        });
-      });
-    </script>
+    <slot />
   </body>
 </html>
